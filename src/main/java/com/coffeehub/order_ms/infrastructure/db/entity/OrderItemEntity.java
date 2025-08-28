@@ -1,6 +1,5 @@
 package com.coffeehub.order_ms.infrastructure.db.entity;
 
-import com.coffeehub.order_ms.domain.model.Order;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,7 +27,7 @@ public class OrderItemEntity {
     private UUID id;
     @ManyToOne
     @JsonBackReference
-    private Order order;
+    private OrderEntity order;
     private UUID productId;
     private String productName;
     private BigDecimal price;

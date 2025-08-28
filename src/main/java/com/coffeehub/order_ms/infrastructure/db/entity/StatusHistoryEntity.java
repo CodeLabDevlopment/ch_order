@@ -35,7 +35,7 @@ public class StatusHistoryEntity {
 
     @ManyToOne
     @JsonBackReference
-    private Order order;
+    private OrderEntity order;
 
     private LocalDateTime changedAt;
 
