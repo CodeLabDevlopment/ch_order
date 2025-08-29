@@ -24,6 +24,9 @@ public interface OrderRoutes {
     @GetMapping("{orderId}")
     ResponseEntity<OrderResponse> getOrderById(@PathVariable UUID orderId);
 
+    @PatchMapping("/{orderId}/finalize")
+    ResponseEntity<Void> finalizeOrder(@PathVariable UUID orderId);
+
     @PatchMapping("{orderId}")
     ResponseEntity<Void> updateOrderStatus(@PathVariable UUID orderId, @RequestParam(name = "status") OrderStatus status);
 
