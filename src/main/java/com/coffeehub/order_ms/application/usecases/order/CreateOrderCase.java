@@ -6,6 +6,7 @@ import com.coffeehub.order_ms.domain.model.Order;
 import com.coffeehub.order_ms.domain.model.OrderItem;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
 public record CreateOrderCase(OrderGateway orderGateway, OrderItemGateway orderItemGateway) {
@@ -18,8 +19,8 @@ public record CreateOrderCase(OrderGateway orderGateway, OrderItemGateway orderI
                 null,
                 price.multiply(BigDecimal.valueOf(quantity)),
                 null,
-                null,
-                null,
+                List.of(),
+                List.of(),
                 null,
                 null
         );
