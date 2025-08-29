@@ -9,6 +9,7 @@ import java.util.List;
 public record OrderResponse(
         String id,
         String deliveryId,
+        String paymentId,
         BigDecimal totalAmount,
         String status,
         List<ItemResponse> items,
