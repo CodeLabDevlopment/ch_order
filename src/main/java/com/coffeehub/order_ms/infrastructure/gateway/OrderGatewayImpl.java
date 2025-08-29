@@ -1,6 +1,7 @@
 package com.coffeehub.order_ms.infrastructure.gateway;
 
 import com.coffeehub.order_ms.application.gateway.OrderGateway;
+import com.coffeehub.order_ms.domain.dto.PaymentResponse;
 import com.coffeehub.order_ms.domain.enums.OrderStatus;
 import com.coffeehub.order_ms.domain.model.Order;
 import com.coffeehub.order_ms.infrastructure.db.entity.OrderEntity;
@@ -52,6 +53,13 @@ public class OrderGatewayImpl implements OrderGateway {
         log.debug("Finding order by ID: {}", orderId);
         OrderEntity entity = getOrderEntityById(orderId);
         return OrderMapper.toDomain(entity);
+    }
+
+    @Override
+    public void processFinalizedOrders(UUID orderId, PaymentResponse paymentResponse) {
+        OrderEntity entity = getOrderEntityById(orderId);
+        entity.setPaymentId(paymentResponse.paymentId());
+        orderRepository.save(entity);
     }
 
     private OrderEntity getOrderEntityById(UUID orderId) {
