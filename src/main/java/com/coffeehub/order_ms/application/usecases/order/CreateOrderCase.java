@@ -20,7 +20,7 @@ public record CreateOrderCase(OrderGateway orderGateway, OrderItemGateway orderI
                 null,
                 null,
                 price.multiply(BigDecimal.valueOf(quantity)),
-                OrderStatus.RECEIVED,
+                null,
                 List.of(),
                 List.of(),
                 null,
