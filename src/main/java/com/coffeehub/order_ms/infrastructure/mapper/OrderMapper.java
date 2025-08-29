@@ -39,6 +39,7 @@ public final class OrderMapper {
                                 ),
                                 it.getProductId(),
                                 it.getProductName(),
+                                it.getProductDescription(),
                                 it.getPrice(),
                                 it.getQuantity()
                         ))
@@ -70,6 +71,7 @@ public final class OrderMapper {
                                 null,
                                 it.productId(),
                                 it.productName(),
+                                it.productDescription(),
                                 it.price(),
                                 it.quantity()
                         ))
@@ -101,6 +103,7 @@ public final class OrderMapper {
                                 new OrderEntity(),
                                 it.productId(),
                                 it.productName(),
+                                it.productDescription(),
                                 it.price(),
                                 it.quantity()
                         ))

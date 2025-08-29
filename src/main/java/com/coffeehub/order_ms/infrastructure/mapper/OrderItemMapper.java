@@ -24,6 +24,7 @@ public final class OrderItemMapper {
                 ),
                 orderItemEntity.getProductId(),
                 orderItemEntity.getProductName(),
+                orderItemEntity.getProductDescription(),
                 orderItemEntity.getPrice(),
                 orderItemEntity.getQuantity()
         );
@@ -46,6 +47,7 @@ public final class OrderItemMapper {
                 ),
                 item.productId(),
                 item.productName(),
+                item.productDescription(),
                 item.price(),
                 item.quantity()
         );
@@ -68,6 +70,7 @@ public final class OrderItemMapper {
                 ),
                 orderItem.productId(),
                 orderItem.productName(),
+                orderItem.productDescription(),
                 orderItem.price(),
                 orderItem.quantity()
         );

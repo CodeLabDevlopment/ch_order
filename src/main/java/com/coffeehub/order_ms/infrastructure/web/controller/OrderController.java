@@ -29,6 +29,7 @@ public class OrderController implements OrderRoutes {
                 request.customerId(),
                 request.productId(),
                 request.productName(),
+                request.productDescription(),
                 request.price(),
                 request.quantity()
         );

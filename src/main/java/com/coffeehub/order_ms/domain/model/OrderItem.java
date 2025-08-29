@@ -8,6 +8,7 @@ public record OrderItem(
         Order order,
         UUID productId,
         String productName,
+        String productDescription,
         BigDecimal price,
         Integer quantity
 ) {

@@ -12,7 +12,8 @@ import java.util.UUID;
 
 public record CreateOrderCase(OrderGateway orderGateway, OrderItemGateway orderItemGateway) {
 
-    public void execute(UUID customerId, UUID productId, String productName, BigDecimal price, Integer quantity) {
+    public void execute(UUID customerId, UUID productId, String productName, String productDescription,BigDecimal price,
+                        Integer quantity) {
         Order order = new Order(
                 null,
                 customerId,
@@ -30,6 +31,7 @@ public record CreateOrderCase(OrderGateway orderGateway, OrderItemGateway orderI
                 order,
                 productId,
                 productName,
+                productDescription,
                 price,
                 quantity
         );

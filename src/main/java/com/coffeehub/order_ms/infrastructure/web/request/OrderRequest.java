@@ -14,6 +14,7 @@ public record OrderRequest(
         UUID productId,
         @NotBlank(message = "Product name is required")
         String productName,
+        String productDescription,
         @NotNull(message = "Price is required")
         @Positive(message = "Price must be positive")
         BigDecimal price,
