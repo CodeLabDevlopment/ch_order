@@ -6,6 +6,9 @@ import com.coffeehub.order_ms.domain.model.StatusHistory;
 import com.coffeehub.order_ms.infrastructure.db.entity.OrderEntity;
 import com.coffeehub.order_ms.infrastructure.db.entity.OrderItemEntity;
 import com.coffeehub.order_ms.infrastructure.db.entity.StatusHistoryEntity;
+import com.coffeehub.order_ms.infrastructure.web.response.item.ItemResponse;
+import com.coffeehub.order_ms.infrastructure.web.response.order.OrderResponse;
+import com.coffeehub.order_ms.infrastructure.web.response.statushistory.StatusHistoryResponse;
 
 import java.util.UUID;
 
@@ -95,7 +98,7 @@ public final class OrderMapper {
                 order.items().stream()
                         .map(it -> new OrderItemEntity(
                                 it.id(),
-                                null,
+                                new OrderEntity(),
                                 it.productId(),
                                 it.productName(),
                                 it.price(),
@@ -106,12 +109,39 @@ public final class OrderMapper {
                         .map(it -> new StatusHistoryEntity(
                                 it.id(),
                                 it.status(),
-                                null,
+                                new OrderEntity(),
                                 it.changedAt()
                         ))
                         .toList(),
                 order.createdAt(),
                 order.updatedAt()
+        );
+    }
+
+    public static OrderResponse toResponse(Order order) {
+        return new OrderResponse(
+                order.id().toString(),
+                order.deliveryId() != null ? order.deliveryId().toString() : null,
+                order.totalAmount(),
+                order.status() != null ? order.status().name() : null,
+                order.items().stream()
+                        .map(it -> new ItemResponse(
+                                it.id().toString(),
+                                it.productId().toString(),
+                                it.productName(),
+                                it.price(),
+                                it.quantity()
+                        ))
+                        .toList(),
+                order.statusHistory().stream()
+                        .map(it -> new StatusHistoryResponse(
+                                it.id().toString(),
+                                it.status().name(),
+                                it.changedAt().toString()
+                        ))
+                        .toList(),
+                order.createdAt().toString(),
+                order.updatedAt().toString()
         );
     }
 
