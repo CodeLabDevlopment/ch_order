@@ -125,6 +125,7 @@ public final class OrderMapper {
         return new OrderResponse(
                 order.id().toString(),
                 order.deliveryId() != null ? order.deliveryId().toString() : null,
+                order.paymentId() != null ? order.paymentId().toString() : null,
                 order.totalAmount(),
                 order.status() != null ? order.status().name() : null,
                 order.items().stream()
