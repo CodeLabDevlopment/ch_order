@@ -2,6 +2,7 @@ package com.coffeehub.order_ms.application.usecases.order;
 
 import com.coffeehub.order_ms.application.gateway.OrderGateway;
 import com.coffeehub.order_ms.application.gateway.OrderItemGateway;
+import com.coffeehub.order_ms.domain.enums.OrderStatus;
 import com.coffeehub.order_ms.domain.model.Order;
 import com.coffeehub.order_ms.domain.model.OrderItem;
 
@@ -18,7 +19,7 @@ public record CreateOrderCase(OrderGateway orderGateway, OrderItemGateway orderI
                 null,
                 null,
                 price.multiply(BigDecimal.valueOf(quantity)),
-                null,
+                OrderStatus.RECEIVED,
                 List.of(),
                 List.of(),
                 null,
