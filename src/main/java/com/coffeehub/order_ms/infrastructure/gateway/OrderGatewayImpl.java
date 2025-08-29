@@ -37,11 +37,12 @@ public class OrderGatewayImpl implements OrderGateway {
     public void updateOrderStatus(UUID orderId, OrderStatus status) {
         log.debug("Updating order status for order ID: {} to {}", orderId, status);
 
-        Order order = this.findOrderById(orderId);
-        OrderEntity entity = OrderMapper.toEntity(order);
+        OrderEntity entity = getOrderEntityById(orderId);
 
         entity.setStatus(status);
         orderRepository.save(entity);
+
+        // TODO: Setar histórico de status também
 
         log.debug("Order status updated for order ID: {}", orderId);
     }
@@ -49,8 +50,12 @@ public class OrderGatewayImpl implements OrderGateway {
     @Override
     public Order findOrderById(UUID orderId) {
         log.debug("Finding order by ID: {}", orderId);
-        return orderRepository.findById(orderId)
-                .map(OrderMapper::toDomain)
+        OrderEntity entity = getOrderEntityById(orderId);
+        return OrderMapper.toDomain(entity);
+    }
+
+    private OrderEntity getOrderEntityById(UUID orderId) {
+        return this.orderRepository.findById(orderId)
                 .orElseThrow(() -> {
                     log.error("Order not found with ID: {}", orderId);
                     return new EntityNotFoundException("Order not found");
