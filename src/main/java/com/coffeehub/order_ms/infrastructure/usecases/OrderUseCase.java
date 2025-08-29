@@ -1,6 +1,7 @@
 package com.coffeehub.order_ms.infrastructure.usecases;
 
 import com.coffeehub.order_ms.application.gateway.OrderGateway;
+import com.coffeehub.order_ms.application.gateway.StatusHistoryGateway;
 import com.coffeehub.order_ms.application.usecases.order.CreateOrderCase;
 import com.coffeehub.order_ms.application.usecases.order.GetOrderByIdCase;
 import com.coffeehub.order_ms.application.usecases.order.UpdateOrderStatusCase;
@@ -22,8 +23,8 @@ public class OrderUseCase {
     }
 
     @Bean
-    public UpdateOrderStatusCase updateOrderStatusCase(OrderGateway orderGateway) {
-        return new UpdateOrderStatusCase(orderGateway);
+    public UpdateOrderStatusCase updateOrderStatusCase(OrderGateway orderGateway, StatusHistoryGateway statusHistoryGateway) {
+        return new UpdateOrderStatusCase(orderGateway, statusHistoryGateway);
     }
 
 }
